@@ -1,0 +1,23 @@
+services:
+  client:
+    build:
+      context: .
+      dockerfile: client/Dockerfile
+    container_name: react-client
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./client:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
+    networks:
+      - node-network
+    environment:
+      - NODE_ENV=${APP_ENV}
+      - APP_ENV=${APP_ENV}
+
+networks:
+  node-network:
+    driver: bridge
+
+volumes:
+  node_modules:
