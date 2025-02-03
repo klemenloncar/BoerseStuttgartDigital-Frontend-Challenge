@@ -1,11 +1,13 @@
 import { Navigate } from 'react-router'
-import Login from '../features/login/Login'
-import Dashboard from '../features/dashboard/Dashboard'
+import { lazy } from 'react'
+
+const LoginView = lazy(() => import('../features/login/Login'))
+const DashboardView = lazy(() => import('../features/dashboard/Dashboard'))
 
 const routes = [
-  { path: '/login', element: <Login /> },
-  { path: '/dashboard', element: <Dashboard /> },
-  { path: '*', element: <Navigate to="/" replace /> }
+  { path: '/login', element: <LoginView /> },
+  { path: '/dashboard', element: <DashboardView /> },
+  { path: '*', element: <Navigate to="/dashboard" replace /> }
 ]
 
 export default routes

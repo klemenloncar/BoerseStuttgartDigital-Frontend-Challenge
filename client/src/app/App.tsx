@@ -1,16 +1,19 @@
-import './App.css'
-import { BrowserRouter as Router, Route, Routes } from 'react-router'
+import { BrowserRouter as Router, Routes, Route } from 'react-router'
+import { Suspense } from 'react'
 import routes from './routes'
+import Spinner from '../components/Spinner'
 
 function App() {
   return (
     <Router>
       <div className="container-fluid px-0 cg-background min-vh-100 d-flex flex-column">
-        <Routes>
-          {routes.map((route, index) => (
-            <Route key={index} path={route.path} element={route.element} />
-          ))}
-        </Routes>
+        <Suspense fallback={<Spinner />}>
+          <Routes>
+            {routes.map((route, index) => (
+              <Route key={index} path={route.path} element={route.element} />
+            ))}
+          </Routes>
+        </Suspense>
       </div>
     </Router>
   )
