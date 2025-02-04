@@ -34,7 +34,7 @@ export const login = createAsyncThunk<string, { email: string; password: string 
   }
 )
 
-export const logout = createAsyncThunk<void, void, { rejectValue: string }>(
+export const logoutUser = createAsyncThunk<void, void, { rejectValue: string }>(
   AuthEndpoints.LOGOUT,
   async (_, { rejectWithValue }) => {
     try {
@@ -55,7 +55,7 @@ const authSlice = createSlice({
       state.isAuthenticated = true
     })
 
-    builder.addCase(logout.fulfilled, (state) => {
+    builder.addCase(logoutUser.fulfilled, (state) => {
       state.token = null
       state.isAuthenticated = false
     })

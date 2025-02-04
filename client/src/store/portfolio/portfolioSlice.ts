@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { PortfolioState, TransactionType } from './portfolio.types'
 
 const initialState: PortfolioState = {
-  holdings: { BTC: 5 },
+  holdings: { BTC: 1.12345678, EUR: 1234 },
   transactions: []
 }
 
