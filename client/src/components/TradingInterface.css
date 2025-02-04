@@ -1,0 +1,9 @@
+.bts-success {
+  color: var(--bst-white);
+  background: var(--bst-success);
+}
+
+.bts-danger {
+  color: var(--bst-white);
+  background: var(--bst-danger);
+}
