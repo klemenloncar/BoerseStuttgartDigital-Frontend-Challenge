@@ -14,7 +14,7 @@ type AssetOption = {
 
 const AssetSelector: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>()
-  const { assets, selectedAsset } = useSelector((state: RootState) => state.assets)
+  const { assets, selectedAsset, error } = useSelector((state: RootState) => state.assets)
 
   useEffect(() => {
     dispatch(fetchAssets())
@@ -42,17 +42,22 @@ const AssetSelector: React.FC = () => {
 
   return (
     <div className="my-4">
-      <Select
-        className="basic-single mb-4"
-        classNamePrefix="select"
-        options={options}
-        value={options.find((option) => option.value === selectedAsset) || null}
-        onChange={handleSelectChange}
-        placeholder="Search and select an asset..."
-        isSearchable
-      />
+      {error && <p>Error fetching assets!</p>}
+      {!error && (
+        <>
+          <Select
+            className="basic-single mb-4"
+            classNamePrefix="select"
+            options={options}
+            value={options.find((option) => option.value === selectedAsset) || null}
+            onChange={handleSelectChange}
+            placeholder="Search and select an asset..."
+            isSearchable
+          />
 
-      {selectedAsset && <PriceChart assetId={selectedAsset} />}
+          {selectedAsset && <PriceChart assetId={selectedAsset} />}
+        </>
+      )}
     </div>
   )
 }
