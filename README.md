@@ -36,8 +36,8 @@ analyze cryptocurrency trends with interactive charts.
 5. Default Ports
    - Client: **5173**
 6. Login Credentials:
-   - username:
-   - password:
+   - username: **simon@bsdigital.com**
+   - password: **test123**
 
 ### Additional notes
 
