@@ -49,8 +49,7 @@ const Header = React.memo(() => {
             {Object.entries(holdings).map(([asset, amount]) => (
               <li key={asset}>
                 <span className="dropdown-item-text">
-                  <strong>{asset}</strong>:{' '}
-                  {asset === 'BTC' ? amount.toFixed(8) : asset === 'EUR' ? amount.toFixed(2) : amount}
+                  <strong className="text-uppercase">{asset}</strong>: {amount.toFixed(8)}
                 </span>
               </li>
             ))}
