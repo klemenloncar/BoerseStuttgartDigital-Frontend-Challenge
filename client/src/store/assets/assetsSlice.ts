@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
-import { AssetsState, CRYPTOCURRENCY } from './assets.types'
+import { API_URL, AssetsState, CRYPTOCURRENCY } from './assets.types'
 
 const initialState: AssetsState = {
   assets: [],
@@ -10,7 +10,7 @@ const initialState: AssetsState = {
 
 export const fetchAssets = createAsyncThunk('assets/fetchAssets', async (_, { rejectWithValue }) => {
   try {
-    const response = await fetch('https://api.coincap.io/v2/assets')
+    const response = await fetch(API_URL)
 
     if (!response.ok) {
       throw new Error(`Error: ${response.status} ${response.statusText}`)
