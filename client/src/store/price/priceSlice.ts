@@ -23,12 +23,15 @@ export const fetchPriceData = createAsyncThunk('price/fetchPriceData', async (as
 
     const json = await response.json()
 
-    return json.data.map((d: any) => ({
+    return json.data.map((d: { time: string; priceUsd: string }) => ({
       time: d.time,
       price: parseFloat(d.priceUsd)
     }))
-  } catch (error: any) {
-    return rejectWithValue(error.message || 'Failed to fetch price data')
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return rejectWithValue(error.message)
+    }
+    return rejectWithValue('Failed to fetch price data')
   }
 })
 

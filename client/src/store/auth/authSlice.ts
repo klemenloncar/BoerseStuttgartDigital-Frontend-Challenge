@@ -28,6 +28,7 @@ export const login = createAsyncThunk<string, { email: string; password: string 
     try {
       localStorage.setItem('authToken', fakeToken)
     } catch (error) {
+      console.error('Error:', error)
       return rejectWithValue('Failed to save token')
     }
     return fakeToken
@@ -40,6 +41,7 @@ export const logoutUser = createAsyncThunk<void, void, { rejectValue: string }>(
     try {
       localStorage.removeItem('authToken')
     } catch (error) {
+      console.error('Error:', error)
       return rejectWithValue('Logout failed')
     }
   }

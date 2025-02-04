@@ -17,12 +17,15 @@ export const fetchAssets = createAsyncThunk('assets/fetchAssets', async (_, { re
     }
 
     const data = await response.json()
-    return data.data.map((asset: any) => ({
+    return data.data.map((asset: { id: string; name: string }) => ({
       id: asset.id,
       name: asset.name
     }))
-  } catch (error: any) {
-    return rejectWithValue(error.message || 'Failed to fetch assets')
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return rejectWithValue(error.message)
+    }
+    return rejectWithValue('Failed to fetch assets')
   }
 })
 

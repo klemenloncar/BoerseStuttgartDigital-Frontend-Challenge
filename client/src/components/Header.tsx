@@ -1,18 +1,25 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { Link } from 'react-router'
+import { useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router'
 import baseLogo from '../assets/logo.svg'
 import { RootState } from '../store'
 import { logoutUser } from '../store/auth/authSlice'
+import { useAppDispatch } from '../store/hooks'
 
 const Header = React.memo(() => {
+  const navigate = useNavigate()
   const holdings = useSelector((state: RootState) => state.portfolio.holdings)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const handleLogout = async () => {
     try {
-      await (dispatch as any)(logoutUser()).unwrap()
-    } catch (e) {}
+      await dispatch(logoutUser()).unwrap()
+
+      navigate('/login')
+    } catch (e) {
+      console.error(e)
+      throw new Error('Logout failed')
+    }
   }
 
   return (

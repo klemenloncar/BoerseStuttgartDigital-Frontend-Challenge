@@ -22,8 +22,9 @@ const Login: React.FC = () => {
       await dispatch(login({ email, password })).unwrap()
 
       navigate('/dashboard')
-    } catch (err: any) {
-      setError(err || 'Login failed')
+    } catch (e) {
+      console.error(e)
+      setError('Login failed')
     } finally {
       setIsPending(false)
     }

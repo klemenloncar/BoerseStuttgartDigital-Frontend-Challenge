@@ -3,7 +3,7 @@ export enum TransactionType {
   SELL = 'sell'
 }
 
-interface Transaction {
+export interface Transaction {
   id: string
   asset: string
   type: TransactionType
