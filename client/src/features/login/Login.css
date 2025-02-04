@@ -1,0 +1,8 @@
+.bst-login {
+  background: var(--bst-blue);
+}
+
+.bst-title {
+  color: var(--bst-blue);
+  text-transform: uppercase;
+}
