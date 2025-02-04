@@ -1,0 +1,38 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  client:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "22.13.1"
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./client
+
+      - name: Lint code
+        run: npm run lint
+        working-directory: ./client
+
+      - name: Format code
+        run: npm run format
+        working-directory: ./client
+
+      - name: Build React App
+        run: npm run build
+        working-directory: ./client
