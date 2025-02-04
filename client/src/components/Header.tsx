@@ -5,6 +5,7 @@ import baseLogo from '../assets/logo.svg'
 import { RootState } from '../store'
 import { logoutUser } from '../store/auth/authSlice'
 import { useAppDispatch } from '../store/hooks'
+import { RoutePath } from '../app/Routes.types'
 
 const Header = React.memo(() => {
   const navigate = useNavigate()
@@ -15,7 +16,7 @@ const Header = React.memo(() => {
     try {
       await dispatch(logoutUser()).unwrap()
 
-      navigate('/login')
+      navigate(RoutePath.LOGIN)
     } catch (e) {
       console.error(e)
       throw new Error('Logout failed')
@@ -25,7 +26,7 @@ const Header = React.memo(() => {
   return (
     <nav className="navbar navbar-expand-lg shadow">
       <div className="container-fluid">
-        <Link to="/dashboard" className="navbar-brand d-flex align-items-center">
+        <Link to={RoutePath.DASHBOARD} className="navbar-brand d-flex align-items-center">
           <img src={baseLogo} alt="Bison Trading App Logo" width="120" className="d-inline-block align-top me-2" />
           <span className="btn btn-primary position-relative">
             CryptoTrading App

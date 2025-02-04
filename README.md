@@ -5,17 +5,15 @@
 
 ## Description
 
-An React-based web application that provides a **simulated** trading experience, allowing users to manage a virtual portfolio and
+An React-based Web application that provides a **simulated** trading experience, allowing users to manage a virtual portfolio and
 analyze cryptocurrency trends with interactive charts.
 
 ### Features
 
 1. **React V18 Frontend - `client`**
-   - **Global notification system** for displaying various notifications
    - Login page (`/login`) with `AuthGuard` - lazy loaded routes
    - Login form (username / password)
    - Dashboard page (`/dashboard`) that displays **Crypto chart**, **trading interface** and **portfolio summary**.
-   - Debounced search input
    - Redux slices (store)
    - Backend (server) is mocked
 

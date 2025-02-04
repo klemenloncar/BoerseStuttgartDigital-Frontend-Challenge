@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router'
 import { useAppDispatch } from '../../store/hooks'
 import { login } from '../../store/auth/authSlice'
 import './Login.css'
+import { RoutePath } from '../../app/Routes.types'
 
 const Login: React.FC = () => {
   const navigate = useNavigate()
@@ -21,7 +22,7 @@ const Login: React.FC = () => {
     try {
       await dispatch(login({ email, password })).unwrap()
 
-      navigate('/dashboard')
+      navigate(RoutePath.DASHBOARD)
     } catch (e) {
       console.error(e)
       setError('Login failed')

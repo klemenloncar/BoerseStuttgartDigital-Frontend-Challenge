@@ -6,15 +6,16 @@ import { ErrorBoundary } from 'react-error-boundary'
 import ErrorFallback from '../components/error/ErrorFallback'
 import { useSelector } from 'react-redux'
 import { RootState } from '../store'
+import { RoutePath } from './Routes.types'
 
 const RequireAuth = ({ element }: { element: JSX.Element }) => {
   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated)
-  return isAuthenticated ? element : <Navigate to="/login" replace />
+  return isAuthenticated ? element : <Navigate to={RoutePath.LOGIN} replace />
 }
 
 const RedirectIfAuthenticated = ({ element }: { element: JSX.Element }) => {
   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated)
-  return isAuthenticated ? <Navigate to="/dashboard" replace /> : element
+  return isAuthenticated ? <Navigate to={RoutePath.DASHBOARD} replace /> : element
 }
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
           <Suspense fallback={<Spinner />}>
             <Routes>
               {routes.map((route, index) => {
-                if (route.path === '/login') {
+                if (route.path === RoutePath.LOGIN) {
                   return (
                     <Route
                       key={index}
@@ -34,7 +35,7 @@ function App() {
                     />
                   )
                 }
-                if (route.path === '/dashboard') {
+                if (route.path === RoutePath.DASHBOARD) {
                   return <Route key={index} path={route.path} element={<RequireAuth element={route.element} />} />
                 }
                 return <Route key={index} path={route.path} element={route.element} />
