@@ -19,10 +19,10 @@ const Dashboard: React.FC = () => {
       <div className="col-12">
         <AssetSelector />
       </div>
-      <div className="col-6">
+      <div className="col-6 col-sm-12">
         <TradingInterface />
       </div>
-      <div className="col-6">
+      <div className="col-6 col-sm-12">
         <PortfolioSummary />
       </div>
     </div>

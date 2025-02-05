@@ -15,8 +15,6 @@ export const fetchPriceData = createAsyncThunk('price/fetchPriceData', async (as
 
     const response = await fetch(url)
 
-    console.log('response', response)
-
     if (!response.ok) {
       throw new Error(`Error: ${response.status} ${response.statusText}`)
     }
